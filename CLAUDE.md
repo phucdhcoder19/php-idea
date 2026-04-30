@@ -1,3 +1,34 @@
+# CLAUDE.md
+
+This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+
+## Commands
+
+- **Run tests:** `php artisan test --compact` or `composer test`
+- **Filter a test:** `php artisan test --compact --filter=testName`
+- **Format PHP:** `composer format` (runs Pint + Rector)
+- **Dev server:** `composer dev` (serves app + queue + Vite concurrently)
+- **Build assets:** `npm run build`
+
+## Application Overview
+
+This is an **idea submission and tracking** app. Users register/login, submit ideas, and ideas progress through a status lifecycle.
+
+### Domain Model
+
+- **User** → hasMany **Idea** → hasMany **Step**
+- **Idea**: `title`, `description`, `link` (JSON array, cast to `AsArrayObject`), `status` (enum), `image_path`
+- **IdeaStatus** enum (`app/IdeaStatus.php`): `Pending` → `InProgress` → `Completed`. The `label()` method maps to display strings ("Pending", "Reviewing", "Accepted").
+- **Step**: `description`, `completed` (boolean, default false) — represents actionable sub-tasks for an idea.
+
+### Auth
+
+Custom auth controllers (not Breeze): `RegisteredUserController` (register) and `SessionsController` (login/logout). Routes use `guest` / `auth` middleware.
+
+### Authorization
+
+`IdeaPolicy` exists in `app/Policies/` — all methods currently return `false` (implementation pending).
+
 <laravel-boost-guidelines>
 === foundation rules ===
 
