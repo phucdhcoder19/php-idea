@@ -1,6 +1,15 @@
 {
+  "permissions": {
+    "allow": [
+      "Bash(vendor/bin/pint *)",
+      "PowerShell(vendor/bin/pint --dirty --format agent 2>&1)",
+      "Bash(php artisan *)",
+      "PowerShell(php artisan make:controller Controller --no-interaction 2>&1)",
+      "PowerShell(vendor/bin/pint app/Http/Controllers/Controller.php --format agent 2>&1)"
+    ]
+  },
+  "enableAllProjectMcpServers": true,
   "enabledMcpjsonServers": [
     "laravel-boost"
-  ],
-  "enableAllProjectMcpServers": true
+  ]
 }

@@ -16,5 +16,4 @@ test('it can have steps', function () {
         'completed' => false,
     ]);
     expect($idea->fresh()->steps)->toHaveCount(1);
-
 });
